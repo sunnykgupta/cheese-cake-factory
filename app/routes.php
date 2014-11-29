@@ -13,7 +13,9 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+    if(Auth::check())
+        return View::make('index');
+	return View::make('login');
 });
 
 /*Route to install 
@@ -39,6 +41,16 @@ Route::get('/login', 'SessionsController@create');
 Route::get('/logout', 'SessionsController@destroy');
 Route::get('/view/{postid}', 'PostsController@show');
 
+Route::get('/signup',function(){
+    if(Auth::check())
+        return "Already logged in.";
+    return View::make('signup');
+});
+
+Route::post('/signup','UsersController@store');
+Route::post('/login', 'SessionsController@store');
+Route::get('/api/me', 'SessionsController@index');
+
 Route::Resource('sessions', 'SessionsController');
-Route::Resource('posts', 'PostsController');
+Route::Resource('tweets', 'PostsController');
 Route::Resource('comments', 'CommentsController');
