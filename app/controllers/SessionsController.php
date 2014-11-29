@@ -8,14 +8,14 @@ class SessionsController extends BaseController{
   
   public function create(){
 		if(Auth::check())
-			return "Welcome";
+			return Redirect::to('/');
 		return View::make('login',['response'=>'']);
 	}
 
 
 	public function store(){
 		if(Auth::attempt(Input::only('username','password'))){
-			return "Welcome";
+			return Redirect::to('/');
 		}
 		else{
 

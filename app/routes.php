@@ -52,5 +52,5 @@ Route::post('/login', 'SessionsController@store');
 Route::get('/api/me', 'SessionsController@index');
 
 Route::Resource('sessions', 'SessionsController');
-Route::Resource('tweets', 'PostsController');
+Route::Resource('tweets', 'TweetsController');
 Route::Resource('comments', 'CommentsController');
