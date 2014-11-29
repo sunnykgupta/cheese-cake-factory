@@ -1,0 +1,70 @@
+.tweet-summary {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-bottom: none;
+}
+
+.tweet-summary:hover {
+  border-color: 1px solid #ccc;
+  background: #eee;
+  cursor: pointer;
+}
+
+.tweet-summary:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.tweet-summary:last-child {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom: 1px solid #ddd;
+}
+
+
+.tweet-top-line .media-heading {
+  font-weight: bold;
+  margin-right: 3px;
+}
+
+.tweet-top-line .author-handle {
+  font-size: 90%;
+}
+
+.tweet-top-line .author-handle:hover {
+  text-decoration: none;
+}
+
+.tweet-top-line {
+  margin-top: -4px;
+}
+
+.tweet-footer .tweet-stats {
+  float: left;
+  margin-right: 20px;
+  opacity: 0.5;
+}
+
+.tweet-footer .tweet-stats:hover {
+  opacity: 1;
+  cursor: pointer;
+  transition: 200ms;
+}
+
+
+.create-tweet .form-control {
+  width: calc(100% - 48px - 15px - 20px - 80px);
+  display: inline-block;
+  margin-left: 15px;
+}
+
+.create-tweet .gravatar {
+  width: 48px;
+  display: inline-block;
+}
+
+.create-tweet .btn-create-tweet {
+  display: inline-block;
+  margin-left: 10px;
+  width: 80px;
+}
