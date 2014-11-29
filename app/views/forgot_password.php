@@ -1,24 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>The Cheesecake Factory</title>
+@extends('layout')
 
-  <!-- Vendor CSS -->
-  <link rel="stylesheet" type="text/css" href="/stylesheets/vendor/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="/stylesheets/vendor/bootstrap-theme.css">
-
-  <!-- Theme CSS -->
-  <link rel="stylesheet" type="text/css" href="/stylesheets/theme/login.css">
-
-  <!-- Vendor Javascripts -->
-  <script type="text/javascript" src="/javascripts/vendor/underscore.js"></script>
-  <script type="text/javascript" src="/javascripts/vendor/jquery-1.11.1.js"></script>
-  <script type="text/javascript" src="/javascripts/vendor/backbone.js"></script>
-  <script type="text/javascript" src="/javascripts/vendor/bootstrap.js"></script>
-
-</head>
-<body>
-  <div class="container">
+@section('body')
+<div class="container">
     <div class="row">
       <div class="col-xs-12 col-xs-offset-0 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 well login-well">
         <form role="form" action="/forgot-password" method="POST">
@@ -39,5 +22,4 @@
       </div>
     </div>
   </div>
-</body>
-</html>
+@stop

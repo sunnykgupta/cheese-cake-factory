@@ -15,7 +15,7 @@ class SessionsController extends BaseController{
 		}
 		else{
 
-		return View::make('admin.login',['response'=>'Please verify username and password']);
+		return View::make('login',['response'=>'Please verify username and password']);
 		}
 	}
 

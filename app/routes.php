@@ -34,4 +34,11 @@ Route::get('/install',function(){
 	return "Admin created with standard username and password.";
 });
 
+Route::get('/create', 'PostsController@create');
+Route::get('/login', 'SessionsController@create');
+Route::get('/logout', 'SessionsController@destroy');
+Route::get('/view/{postid}', 'PostsController@show');
+
 Route::Resource('sessions', 'SessionsController');
+Route::Resource('posts', 'PostsController');
+Route::Resource('comments', 'CommentsController');
