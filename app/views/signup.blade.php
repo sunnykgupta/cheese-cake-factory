@@ -7,9 +7,14 @@
         <form role="form" action="/signup" method="POST">
 
           <!-- Username -->
+          @if($username_error)
+          <div class="form-group has-error">
+          @else
           <div class="form-group">
+          @endif
             <label class="control-label" for="txtUsername">Username</label>
             <input type="text" class="form-control" name="username" maxlength="30" placeholder="Enter your email/username" id="txtUsername">
+            <span class="text-danger">{{$username_error}}</span>
           </div>
             
           <!-- Email -->
