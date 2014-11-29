@@ -13,7 +13,7 @@
     },
 
     onClick: function () {
-      alert(this.model.get('id'));
+
     },
 
     initialize: function (tweet) {
@@ -23,8 +23,8 @@
     },
 
     updateTimeAgo: function () {
-      this.model.set('tweetTimeAgo', moment(this.model.get('timestamp')).fromNow(), true);
-      this.$timeAgo.html(moment(this.model.get('timestamp')).fromNow());
+      this.model.set('tweetTimeAgo', moment(this.model.get('created_at')).fromNow(), true);
+      this.$timeAgo.html(moment(this.model.get('created_at')).fromNow());
     },
 
     render: function () {

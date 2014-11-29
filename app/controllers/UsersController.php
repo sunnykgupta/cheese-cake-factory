@@ -10,4 +10,9 @@ class UsersController extends BaseController{
    
     return Redirect::to('/');
     }
+
+ function getByUsername($username) {
+ 	if ($username == "me") return Auth::user();
+ 	return User::where('username', '=', $username)->get()->first();
+ }
 }

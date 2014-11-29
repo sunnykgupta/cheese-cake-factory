@@ -1,18 +1,34 @@
 (function (Backbone) {
 
+  var safely = function (delegate) {
+    try {
+      delegate();
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   var TwitterRouter = Backbone.Router.extend({
 
     routes: {
       "": "homepage",
-      "@:handle": "userPage"
+      "@:username": "userPage"
     },
 
     homepage: function () {
-      HomepageController.initialize();
+      safely(function () {
+        HomepageController.initialize({
+          username: 'me'
+        });
+      });
     },
 
-    userPage: function(handle) {
-      console.log(handle);
+    userPage: function(username) {
+      safely(function () {
+        HomepageController.initialize({
+          username: username
+        });
+      });
     }
 
   });

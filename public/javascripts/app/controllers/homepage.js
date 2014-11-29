@@ -2,29 +2,47 @@
 
   var HomepageController = window.HomepageController = {
 
-    initialize: function () {
+    initialize: function (options) {
+
+      $('#container').empty();
+      $('<div></div>').addClass('container').attr('id', 'container').appendTo($('body'));
 
       $('#container')
         .html($('#tmplHomepage').html());
 
-      // $('[data-has-boxy]').each(function () {
-      //   var boxy = new Boxy();
-      //   $(this).empty().append(boxy.canvas);
-      //   $(this).data('boxy-instance', boxy);
-      //   boxy.start();
-      // });
+      var that = this,
+        handle = options.username;
 
-      $.when(
-          UserService.getCurrentUser(),
-          TimelineService.getCurrentUserTimeline()
-        ).then(function (currentUserJSON, timeline) {
-          this.sidebarUserView = new CurrentUserSidebarView(new User(currentUserJSON));
-          this.timelineView = new TimelineView({ collection: new Timeline(timeline.tweets) });
-          this.createTweetView = new CreateTweetView({ user: new User(currentUserJSON), collection: new Timeline(timeline.tweets) });
-        }).fail(function () {
+      UserService.getCurrentUser()
+        .then(function (currentUserJSON) {
+          $.when(TimelineService.getUserTimeline(handle))
+            .then(function (timeline) {
+              UserService.getUser(handle)
+                .then(function (userJSON) {
+                  var currentUser = new User(currentUserJSON),
+                    sidebarUser = new User(userJSON),
+                    tweetCollection = new Timeline(timeline.tweets),
+                    pendingTweets = new PendingTweets({ user: currentUser, collection: tweetCollection });
+                
+                  if (this.userTimelineView) {
+                    this.userTimelineView.remove();
+                  }
+
+                  this.userTimelineView = new UserTimelineView({
+                    currentUser: currentUser,
+                    sidebarUser: sidebarUser,
+                    tweetCollection: tweetCollection,
+                    pendingTweets: pendingTweets,
+                    handle: handle,
+                    isMyPage: (currentUser.get('username') === handle || handle === 'me')
+                  });
+                });
+            });
+        })
+        .fail(function () {
           console.error(arguments);
         });
-    }.bind(HomepageController)
+    }
 
   };
 

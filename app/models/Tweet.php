@@ -10,7 +10,7 @@ class Tweet extends Eloquent {
 	 */
 	protected $table = 'tweets';
 
-	 public function user()
+	 public function author()
     {
         return $this->belongsTo('User', 'user_id', 'id');
     }

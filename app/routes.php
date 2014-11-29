@@ -49,7 +49,9 @@ Route::get('/signup',function(){
 
 Route::post('/signup','UsersController@store');
 Route::post('/login', 'SessionsController@store');
-Route::get('/api/me', 'SessionsController@index');
+Route::get('/me', 'SessionsController@index');
+Route::get('/users/{username}', 'UsersController@getByUsername');
+Route::get('/users/{username}/tweets', 'TweetsController@getTweetsByUsername');
 
 Route::Resource('sessions', 'SessionsController');
 Route::Resource('tweets', 'TweetsController');

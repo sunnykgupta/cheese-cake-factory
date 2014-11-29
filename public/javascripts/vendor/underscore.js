@@ -1413,9 +1413,4 @@
       return _;
     });
   }
-
-
-  _.templateSettings = {
-    interpolate: /\{\{(.+?)\}\}/g
-  };
 }.call(this));

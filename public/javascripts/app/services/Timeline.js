@@ -14,9 +14,27 @@
   var TimelineService = window.TimelineService = {
 
     getCurrentUserTimeline: function () {
+      return TimelineService.getUserTimeline('me');
+    },
+
+    getUserTimeline: function (handle) {
+      var deferred = new $.Deferred();
+      $.get('/tweets/', function (response) {
+        if (typeof response == "string") {
+          try {
+            response = JSON.parse(response);
+          } catch(e) { response = { err: "Invalid JSON!" }; }
+        }
+        deferred.resolve(response);
+      });
+      return deferred.promise();
+      
+
+
+
 
       var result = { tweets: [] };
-      for (var i = 0; i < 25; i += 1) {
+      for (var i = 0; i < 10 + (~~(Math.random() * 20)); i += 1) {
         result.tweets.push({
           id: ~~(Math.random() * 10000),
           content: faker.hacker.phrase(),

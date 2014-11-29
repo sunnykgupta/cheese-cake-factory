@@ -3,10 +3,10 @@
   var BaseView = window.BaseView = Backbone.View.extend({
 
     initialize: function (model) {
-      if (model) {
+      if (model && !this.model) {
         this.model = model;
       }
-      
+
       this.templateHTML = this.template ? $('#tmpl' + this.template).html() : void(0);
       this.$container = this.container ? $('#' + this.container) : void(0);
       this.removeLoaders();
@@ -40,7 +40,12 @@
     toHTML: function (overrides) {
       var attributes  = (this.model || {}).attributes;
       var data = $.extend(true, {}, attributes, overrides);
-      return Mustache.to_html(this.templateHTML, data);
+      return _.template(this.templateHTML)(data);
+    },
+
+    remove: function () {
+      this.beforeRemove && this.beforeRemove();
+      Backbone.View.prototype.remove.apply(this, arguments);
     }
 
   });

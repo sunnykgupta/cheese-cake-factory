@@ -14,16 +14,25 @@
   var UserService = window.UserService = {
 
     getCurrentUser: function () {
-      return mock({
-        name: 'Biswarup Chakravarty',
-        handle: 'biswarup',
-        tweets: 404,
-        followers: 420,
-        following: 302,
-        profilePictureUrl: '/',
-        email: 'biswarup.chakravarty@gmail.com'
+      var deferred = new $.Deferred();
+      $.get('/me/', function (response) {
+        if (typeof response == "string") {
+          response = JSON.parse(response);
+        }
+        deferred.resolve(response);
       });
-      return $.get('/api/me');
+      return deferred.promise();
+    },
+
+    getUser: function (username) {
+      var deferred = new $.Deferred();
+      $.get('/users/' + username + '/', function (response) {
+        if (typeof response == "string") {
+          response = JSON.parse(response);
+        }
+        deferred.resolve(response);
+      });
+      return deferred.promise();
     }
 
   };

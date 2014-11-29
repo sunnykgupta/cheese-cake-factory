@@ -16,7 +16,7 @@
     },
 
     setProfileURL: function () {
-      this.set('profileURL', '#' + this.get('handle'));
+      this.set('profileURL', '#' + this.get('username'));
     }
 
   });
