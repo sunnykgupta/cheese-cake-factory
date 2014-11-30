@@ -44,7 +44,7 @@ Route::get('/view/{postid}', 'PostsController@show');
 Route::get('/signup',function(){
     if(Auth::check())
         return "Already logged in.";
-    return View::make('signup');
+    return View::make('signup', array('username_error' => false));
 });
 
 Route::post('/signup','UsersController@store');
